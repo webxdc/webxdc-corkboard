@@ -18,6 +18,14 @@ const mod = {
 		}];
 	},
 
+	AppPayloadIsDeleted (inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('ErrorInputNotValid');
+		}
+
+		return inputData.msg === '';
+	},
+
 	// VALUE
 
 	ValueMessagesAdd (inputData) {
