@@ -1,0 +1,14 @@
+body {
+	background: #db893f;
+
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.AppCreateButton {
+	padding: 5px;
+	background: #f89849;
+	border: 1px solid #674121;
+	border-radius: 5px;
+	font-size: 12px;
+	font-weight: bold;
+}
