@@ -61,6 +61,7 @@ const mod = {
 			const board = document.createElement('div');
 			board.classList.add('AppBoard');
 			board.id = inputData.address;
+			board.innerHTML = `<span class="AppBoardName">${ inputData.author }</span>`;
 
 			window.AppItems.appendChild(board);
 		}
@@ -86,11 +87,15 @@ const mod = {
 			mod.ControlUpdate(response, payload);
 		};
 
-		window[payload.address].insertBefore(element, window[payload.address].firstChild);
+		window[payload.address].insertBefore(element, window[payload.address].childNodes[1]);
 	},
 
 	InterfaceDelete (inputData) {
 		window[inputData.guid].remove();
+
+		if (window[inputData.address].childElementCount <= 1) {
+			window[inputData.address].remove();
+		}
 	},
 
 	// CONTROL

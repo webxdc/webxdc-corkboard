@@ -40,7 +40,7 @@ describe('APRVitrine_Order', function () {
 		
 		before(function () {
 			return browser.OLSKPrompt(function () {
-				return browser.click(`${ AppMessage }:nth-child(2)`);
+				return browser.click(`${ AppMessage }:nth-of-type(2)`);
 			}, function (dialog) {
 				return Object.assign(dialog, {
 					response: item,
