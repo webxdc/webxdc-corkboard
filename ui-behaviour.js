@@ -56,7 +56,7 @@ const mod = {
 		const element = document.createElement('button');
 		element.classList.add('AppMessage');
 		element.id = inputData.guid;
-		window.AppBoard.appendChild(element);
+		window.AppItems.appendChild(element);
 		
 		mod._InterfacePopulate(element, inputData);
 	},
@@ -77,7 +77,7 @@ const mod = {
 			mod.ControlUpdate(response, payload);
 		};
 
-		window.AppBoard.insertBefore(element, window.AppBoard.firstChild);
+		window.AppItems.insertBefore(element, window.AppItems.firstChild);
 	},
 
 	InterfaceDelete (inputData) {
