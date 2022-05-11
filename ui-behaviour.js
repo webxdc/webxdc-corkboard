@@ -56,7 +56,16 @@ const mod = {
 		const element = document.createElement('button');
 		element.classList.add('AppMessage');
 		element.id = inputData.guid;
-		window.AppItems.appendChild(element);
+
+		if (!window[inputData.address]) {
+			const board = document.createElement('div');
+			board.classList.add('AppBoard');
+			board.id = inputData.address;
+
+			window.AppItems.appendChild(board);
+		}
+
+		window[inputData.address].appendChild(element);
 		
 		mod._InterfacePopulate(element, inputData);
 	},
@@ -77,7 +86,7 @@ const mod = {
 			mod.ControlUpdate(response, payload);
 		};
 
-		window.AppItems.insertBefore(element, window.AppItems.firstChild);
+		window[payload.address].insertBefore(element, window[payload.address].firstChild);
 	},
 
 	InterfaceDelete (inputData) {

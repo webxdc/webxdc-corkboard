@@ -4,6 +4,7 @@ Object.entries({
 	AppHeading: '.AppHeading',
 	AppCreateButton: '.AppCreateButton',
 	AppItems: '#AppItems',
+	AppBoard: '.AppBoard',
 	AppMessage: '.AppMessage',
 	AppIdentity: '#AppIdentity',
 }).map(function (e) {
@@ -28,6 +29,10 @@ describe('APRVitrine_Access', function () {
 		browser.assert.elements(AppItems, 1);
 	});
 
+	it('hides AppBoard', function () {
+		browser.assert.elements(AppBoard, 0);
+	});
+
 	it('hides AppMessage', function () {
 		browser.assert.elements(AppMessage, 0);
 	});
@@ -40,6 +45,10 @@ describe('APRVitrine_Access', function () {
 
 		before(function () {
 			return browser.click(AppCreateButton);
+		});
+
+		it('hides AppBoard', function () {
+			browser.assert.elements(AppBoard, 0);
 		});
 		
 		it('hides AppMessage', function () {
@@ -60,8 +69,34 @@ describe('APRVitrine_Access', function () {
 			});
 		});
 
+		it('shows AppBoard', function () {
+			browser.assert.elements(AppBoard, 1);
+		});
+
 		it('shows AppMessage', function () {
 			browser.assert.elements(AppMessage, 1);
+		});
+	
+	});
+
+	context('submit second', function () {
+
+		before(function () {
+			return browser.OLSKPrompt(function () {
+				return browser.click(AppCreateButton);
+			}, function (dialog) {
+				return Object.assign(dialog, {
+					response: Math.random().toString(),
+				});
+			});
+		});
+
+		it('shows AppBoard', function () {
+			browser.assert.elements(AppBoard, 1);
+		});
+
+		it('shows AppMessage', function () {
+			browser.assert.elements(AppMessage, 2);
 		});
 	
 	});
@@ -78,8 +113,12 @@ describe('APRVitrine_Access', function () {
 			});
 		});
 
-		it('hides AppMessage', function () {
-			browser.assert.elements(AppMessage, 0);
+		it('shows AppBoard', function () {
+			browser.assert.elements(AppBoard, 1);
+		});
+
+		it('shows AppMessage', function () {
+			browser.assert.elements(AppMessage, 1);
 		});
 	
 	});
