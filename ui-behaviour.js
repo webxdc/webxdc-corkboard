@@ -55,7 +55,7 @@ const mod = {
 	// MESSAGE
 
 	MessageDidArrive (inputData) {
-		mod.ValueMessagesAdd(inputData);
+		mod.ValueMessagesAdd(inputData.payload);
 	},
 
 	// SETUP

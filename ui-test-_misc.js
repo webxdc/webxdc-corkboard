@@ -58,6 +58,24 @@ describe('APRVitrine_Misc', function () {
 		
 	});
 
+	describe('AppMessage', function test_AppMessage () {
+
+		const item = Math.random().toString();
+		
+		before(function () {
+			return browser.fill(AppCreateField, item);
+		});
+		
+		before(function () {
+			return browser.click(AppCreateButton);
+		});
+		
+		it('sets text', function () {
+			browser.assert.text(AppMessage, item);
+		});
+		
+	});
+
 	describe('AppIdentity', function test_AppIdentity () {
 		
 		it('sets value', function () {

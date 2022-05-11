@@ -63,5 +63,9 @@ describe('APRVitrine_Access', function () {
 		});
 	
 	});
+
+	after(function () {
+		return browser.evaluate('window.clearXdcStorage()');
+	});
 	
 });
