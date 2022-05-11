@@ -18,6 +18,14 @@ const mod = {
 		}];
 	},
 
+	AppPayloadIsUpdated (inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('ErrorInputNotValid');
+		}
+
+		return inputData.updated === true;
+	},
+
 	AppPayloadIsDeleted (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('ErrorInputNotValid');
