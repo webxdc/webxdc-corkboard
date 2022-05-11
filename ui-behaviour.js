@@ -88,6 +88,8 @@ const mod = {
 		};
 
 		window[payload.address].insertBefore(element, window[payload.address].childNodes[1]);
+
+		window.AppItems.insertBefore(window[payload.address], window.AppItems.childNodes[0]);
 	},
 
 	InterfaceDelete (inputData) {

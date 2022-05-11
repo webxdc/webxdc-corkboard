@@ -11,6 +11,7 @@ describe('APRVitrine_Order', function () {
 		Math.random().toString(),
 		Math.random().toString(),
 	];
+	const itemUpdate = Math.random().toString();
 
 	context('create', function () {
 		
@@ -35,12 +36,34 @@ describe('APRVitrine_Order', function () {
 	});
 
 	context('update', function () {
-
-		const item = Math.random().toString();
 		
 		before(function () {
 			return browser.OLSKPrompt(function () {
 				return browser.click(`${ AppMessage }:nth-of-type(2)`);
+			}, function (dialog) {
+				return Object.assign(dialog, {
+					response: itemUpdate,
+				});
+			});
+		});
+
+		it('places recent at the top', function () {
+			browser.assert.text(AppMessage, [itemUpdate, items[0], items[2]].join(''));
+		});
+	
+	});
+
+	context('alternate board update', function () {
+
+		const item = Math.random().toString();
+		
+		before(function() {
+			return browser.OLSKVisit(require('./ui-behaviour.js').OLSKControllerRoutes().pop());
+		});
+
+		before(function () {
+			return browser.OLSKPrompt(function () {
+				return browser.click(AppCreateButton);
 			}, function (dialog) {
 				return Object.assign(dialog, {
 					response: item,
@@ -49,7 +72,8 @@ describe('APRVitrine_Order', function () {
 		});
 
 		it('places recent at the top', function () {
-			browser.assert.text(AppMessage, [item, items[0], items[2]].join(''));
+			browser.assert.text(`${ AppMessage }:nth-of-type(1)`, [item, itemUpdate].join
+				(''));
 		});
 	
 	});
