@@ -13,12 +13,22 @@ body {
 	font-weight: bold;
 }
 
+#AppItems {
+	margin-top: 10px;
+
+	display: flex;
+	overflow-y: scroll;
+}
+
 .AppBoard {
 	max-width: 100px;
 	padding: 5px;
+	margin-right: 5px;
+
+	border: 1px solid black;
+	
 	display: flex;
 	flex-direction: column;
-	border: 1px solid black;
 }
 
 .AppBoardName {
