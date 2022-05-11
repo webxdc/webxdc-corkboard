@@ -12,3 +12,21 @@ body {
 	font-size: 12px;
 	font-weight: bold;
 }
+
+.AppBoard {
+	max-width: 100px;
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black;
+}
+
+.AppBoardName {
+	font-weight: bold;
+	padding: 3px;
+	margin-bottom: 5px;
+}
+
+.AppMessage {
+	text-align: left;
+}
