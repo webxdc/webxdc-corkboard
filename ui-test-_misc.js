@@ -11,7 +11,7 @@ describe('APRVitrine_Misc', function () {
 	});
 
 	it('sets title', function() {
-		browser.assert.text('title', 'webxdc-bulletin');
+		browser.assert.text('title', 'webxdc-corkboard');
 	});
 
 	it('sets encoding', function () {
@@ -25,7 +25,7 @@ describe('APRVitrine_Misc', function () {
 	describe('AppHeading', function test_AppHeading () {
 		
 		it('sets text', function () {
-			browser.assert.text(AppHeading, 'webxdc-bulletin');
+			browser.assert.text(AppHeading, 'webxdc-corkboard');
 		});
 		
 	});

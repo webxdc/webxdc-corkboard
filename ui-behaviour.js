@@ -51,7 +51,7 @@ const mod = {
 	},
 
 	_ControlSend (payload) {
-		info = window.webxdc.selfName + ' updated the bulletin';
+		info = window.webxdc.selfName + ' updated the board';
 		window.webxdc.sendUpdate({
 	    payload,
 	    info,
