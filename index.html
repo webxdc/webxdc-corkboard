@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>webxdc-bulletin</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width">
+
+	<script src="webxdc.js"></script>
+	<script src="ui-behaviour.js"></script>
+</head>
+
+<body>
+
+<h1 class="AppHeading">webxdc-bulletin</h1>
+
+<form>
+  <input id="AppCreateField" type="text" placeholder="Message" autofocus />
+  <input class="AppCreateButton" type="submit" onclick="mod.ControlCreate(window.AppCreateField.value); return false;" value="Create" />
+</form>
+
+<p><em><small id="AppIdentity"></small></em></p>
+
+<script>
+AppBehaviour.LifecyclePageDidLoad();
+</script>
+
+</body>
+</html>
