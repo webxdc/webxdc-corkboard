@@ -3,6 +3,7 @@ const kDefaultRoute = require('./ui-behaviour.js').OLSKControllerRoutes().shift(
 Object.entries({
 	AppHeading: '.AppHeading',
 	AppCreateButton: '.AppCreateButton',
+	AppItems: '#AppItems',
 	AppMessage: '.AppMessage',
 	AppIdentity: '#AppIdentity',
 }).map(function (e) {
@@ -21,6 +22,10 @@ describe('APRVitrine_Access', function () {
 
 	it('shows AppCreateButton', function () {
 		browser.assert.elements(AppCreateButton, 1);
+	});
+
+	it('shows AppItems', function () {
+		browser.assert.elements(AppItems, 1);
 	});
 
 	it('hides AppMessage', function () {
