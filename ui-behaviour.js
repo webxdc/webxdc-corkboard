@@ -28,7 +28,7 @@ const mod = {
 
 	InterfaceMessageAdd (inputData) {
 		const element = document.createElement('div');
-		element.classList.add('AppMessage')
+		element.classList.add('AppMessage');
 		element.innerHTML = inputData.msg;
 		window.AppBoard.appendChild(element);
 	},
