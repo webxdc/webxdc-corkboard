@@ -73,6 +73,26 @@ describe('APRVitrine_Misc', function () {
 		it('sets text', function () {
 			browser.assert.text(AppMessage, item);
 		});
+
+		context('update', function () {
+
+			const response = Math.random().toString();
+			
+			before(function () {
+				return browser.OLSKPrompt(function () {
+					return browser.click(AppMessage);
+				}, function (dialog) {
+					return Object.assign(dialog, {
+						response,
+					});
+				});
+			});
+
+			it('sets text', function () {
+				browser.assert.text(AppMessage, response);
+			});
+		
+		});
 		
 	});
 

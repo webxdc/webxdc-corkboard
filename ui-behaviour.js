@@ -34,19 +34,49 @@ const mod = {
 		return inputData.msg === '';
 	},
 
-	// VALUE
+	// DATA
 
-	ValueMessagesAdd (inputData) {
-		mod.InterfaceMessageAdd(inputData);
+	DataPayload (msg, options) {
+		return Object.assign({
+			guid: Date.now().toString(36),
+			author: window.webxdc.selfName,
+			address: window.webxdc.selfAddr,
+	  }, options, {
+	  	msg,
+	  });
 	},
 
 	// INTERFACE
 
-	InterfaceMessageAdd (inputData) {
-		const element = document.createElement('div');
+	InterfaceAdd (inputData) {
+		const element = document.createElement('button');
 		element.classList.add('AppMessage');
-		element.innerHTML = inputData.msg;
+		element.id = inputData.guid;
+		
+		mod._InterfacePopulate(element, inputData);
+
 		window.AppBoard.appendChild(element);
+	},
+
+	InterfaceUpdate (inputData) {
+		mod._InterfacePopulate(window[inputData.guid], inputData);
+	},
+
+	_InterfacePopulate (element, payload) {
+		element.innerHTML = payload.msg;
+		element.onclick = function () {
+			const response = window.prompt('Edit to rename, clear to delete', payload.msg);
+
+			if (!response.trim().length) {
+				return mod.ControlDelete(payload);
+			}
+
+			mod.ControlUpdate(response, payload);
+		};
+	},
+
+	InterfaceDelete (inputData) {
+		window[inputData.guid].remove();
 	},
 
 	// CONTROL
@@ -56,17 +86,22 @@ const mod = {
 			return;
 		}
 
-		mod._ControlSend({
-			guid: Date.now().toString(36),
-			author: window.webxdc.selfName,
-			address: window.webxdc.selfAddr,
-	    msg: inputData,
-	  });
+		mod._ControlJournal(mod.DataPayload(inputData));
 
 		window.AppCreateField.value = '';
 	},
 
-	_ControlSend (payload) {
+	ControlUpdate (msg, options) {
+		mod._ControlJournal(mod.DataPayload(msg, Object.assign(options, {
+			updated: true,
+		})));
+	},
+
+	ControlDelete (inputData) {
+		mod._ControlJournal(mod.DataPayload('', inputData));
+	},
+
+	_ControlJournal (payload) {
 		info = window.webxdc.selfName + ' updated the board';
 		window.webxdc.sendUpdate({
 	    payload,
@@ -77,7 +112,17 @@ const mod = {
 	// MESSAGE
 
 	MessageDidArrive (inputData) {
-		mod.ValueMessagesAdd(inputData.payload);
+		(function(payload) {
+			if (mod.AppPayloadIsDeleted(payload)) {
+				return mod.InterfaceDelete(payload);
+			}
+
+			if (mod.AppPayloadIsUpdated(payload)) {
+				return mod.InterfaceUpdate(payload);
+			}
+
+			return mod.InterfaceAdd(payload);
+		})(inputData.payload);
 	},
 
 	// SETUP

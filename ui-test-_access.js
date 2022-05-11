@@ -64,6 +64,24 @@ describe('APRVitrine_Access', function () {
 	
 	});
 
+	context('edit empty', function () {
+
+		before(function () {
+			return browser.OLSKPrompt(function () {
+				return browser.click(AppMessage);
+			}, function (dialog) {
+				return Object.assign(dialog, {
+					response: '',
+				});
+			});
+		});
+
+		it('hides AppMessage', function () {
+			browser.assert.elements(AppMessage, 0);
+		});
+	
+	});
+
 	after(function () {
 		return browser.evaluate('window.clearXdcStorage()');
 	});
