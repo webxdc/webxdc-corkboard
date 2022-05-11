@@ -30,30 +30,10 @@ describe('APRVitrine_Misc', function () {
 		
 	});
 
-	describe('AppCreateField', function test_AppCreateField () {
-		
-		it('sets type', function () {
-			browser.assert.attribute(AppCreateField, 'type', 'text');
-		});
-		
-		it('sets placeholder', function () {
-			browser.assert.attribute(AppCreateField, 'placeholder', 'Message');
-		});
-		
-		it('sets autofocus', function () {
-			browser.assert.attribute(AppCreateField, 'autofocus', '');
-		});
-		
-	});
-
 	describe('AppCreateButton', function test_AppCreateButton () {
 		
-		it('sets type', function () {
-			browser.assert.attribute(AppCreateButton, 'type', 'submit');
-		});
-		
-		it('sets value', function () {
-			browser.assert.attribute(AppCreateButton, 'value', 'Create');
+		it('sets text', function () {
+			browser.assert.text(AppCreateButton, 'Create');
 		});
 		
 	});
@@ -63,11 +43,13 @@ describe('APRVitrine_Misc', function () {
 		const item = Math.random().toString();
 		
 		before(function () {
-			return browser.fill(AppCreateField, item);
-		});
-		
-		before(function () {
-			return browser.click(AppCreateButton);
+			return browser.OLSKPrompt(function () {
+				return browser.click(AppCreateButton);
+			}, function (dialog) {
+				return Object.assign(dialog, {
+					response: item,
+				});
+			});
 		});
 		
 		it('sets text', function () {

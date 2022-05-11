@@ -13,10 +13,7 @@
 
 <h1 class="AppHeading">webxdc-corkboard</h1>
 
-<form>
-  <input id="AppCreateField" type="text" placeholder="Message" autofocus />
-  <input class="AppCreateButton" type="submit" onclick="AppBehaviour.ControlCreate(window.AppCreateField.value); return false;" value="Create" />
-</form>
+<button class="AppCreateButton" onclick="AppBehaviour.InterfaceCreateButtonDidClick();">Create</button>
 
 <div id="AppBoard"></div>
 

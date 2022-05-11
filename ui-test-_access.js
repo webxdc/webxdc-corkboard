@@ -2,7 +2,6 @@ const kDefaultRoute = require('./ui-behaviour.js').OLSKControllerRoutes().shift(
 
 Object.entries({
 	AppHeading: '.AppHeading',
-	AppCreateField: '#AppCreateField',
 	AppCreateButton: '.AppCreateButton',
 	AppMessage: '.AppMessage',
 	AppIdentity: '#AppIdentity',
@@ -18,10 +17,6 @@ describe('APRVitrine_Access', function () {
 
 	it('shows AppHeading', function () {
 		browser.assert.elements(AppHeading, 1);
-	});
-
-	it('shows AppCreateField', function() {
-		browser.assert.elements(AppCreateField, 1);
 	});
 
 	it('shows AppCreateButton', function () {
@@ -51,13 +46,15 @@ describe('APRVitrine_Access', function () {
 	context('submit filled', function () {
 
 		before(function () {
-			return browser.fill(AppCreateField, Math.random().toString());
+			return browser.OLSKPrompt(function () {
+				return browser.click(AppCreateButton);
+			}, function (dialog) {
+				return Object.assign(dialog, {
+					response: Math.random().toString(),
+				});
+			});
 		});
-		
-		before(function () {
-			return browser.click(AppCreateButton);
-		});
-		
+
 		it('shows AppMessage', function () {
 			browser.assert.elements(AppMessage, 1);
 		});
