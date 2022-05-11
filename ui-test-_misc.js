@@ -61,7 +61,7 @@ describe('APRVitrine_Misc', function () {
 	describe('AppIdentity', function test_AppIdentity () {
 		
 		it('sets value', function () {
-			browser.assert.text(AppIdentity, 'this is device0');
+			browser.assert.text(AppIdentity, 'this is MainDevice');
 		});
 		
 	});

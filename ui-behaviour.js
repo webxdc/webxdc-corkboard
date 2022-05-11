@@ -2,7 +2,7 @@ const mod = {
 
 	OLSKControllerRoutes () {
 		return [{
-			OLSKRoutePath: '/',
+			OLSKRoutePath: '/#name=MainDevice&addr=MainDevice@local.host',
 			OLSKRouteMethod: 'get',
 			OLSKRouteSignature: 'AppMainRoute',
 			OLSKRouteFunction (req, res, next) {
