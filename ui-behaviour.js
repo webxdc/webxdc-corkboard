@@ -53,7 +53,7 @@ const mod = {
 	},
 
 	InterfaceAdd (inputData) {
-		const element = document.createElement('button');
+		const element = document.createElement(inputData.address === window.webxdc.selfAddr ? 'button' : 'div');
 		element.classList.add('AppMessage');
 		element.id = inputData.guid;
 
@@ -77,15 +77,18 @@ const mod = {
 
 	_InterfacePopulate (element, payload) {
 		element.innerHTML = payload.msg;
-		element.onclick = function () {
-			const response = window.prompt('Edit to rename, clear to delete', payload.msg);
 
-			if (!response.trim().length) {
-				return mod.ControlDelete(payload);
-			}
+		if (payload.address === window.webxdc.selfAddr) {
+			element.onclick = function () {
+				const response = window.prompt('Edit to rename, clear to delete', payload.msg);
 
-			mod.ControlUpdate(response, payload);
-		};
+				if (!response.trim().length) {
+					return mod.ControlDelete(payload);
+				}
+
+				mod.ControlUpdate(response, payload);
+			};
+		}
 
 		window[payload.address].insertBefore(element, window[payload.address].childNodes[1]);
 
