@@ -97,5 +97,9 @@ describe('APRVitrine_Misc', function () {
 		});
 		
 	});
+
+	after(function () {
+		return browser.evaluate('window.clearXdcStorage()');
+	});
 	
 });
