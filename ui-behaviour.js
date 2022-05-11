@@ -21,10 +21,16 @@ const mod = {
 	// VALUE
 
 	ValueMessagesAdd (inputData) {
-		const target = document.createElement('div');
-		target.classList.add('AppMessage')
-		target.innerHTML = inputData.msg;
-		window.AppBoard.appendChild(target);
+		mod.InterfaceMessageAdd(inputData);
+	},
+
+	// INTERFACE
+
+	InterfaceMessageAdd (inputData) {
+		const element = document.createElement('div');
+		element.classList.add('AppMessage')
+		element.innerHTML = inputData.msg;
+		window.AppBoard.appendChild(element);
 	},
 
 	// CONTROL
