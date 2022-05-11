@@ -56,7 +56,7 @@ describe('APRVitrine_Misc', function () {
 			browser.assert.text(AppMessage, item);
 		});
 
-		context('update', function () {
+		context('click', function () {
 
 			const response = Math.random().toString();
 			
