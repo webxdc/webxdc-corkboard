@@ -11,9 +11,22 @@ const mod = {
 		}];
 	},
 
+	// VALUE
+
+	ValueMessagesAdd (inputData) {
+		const target = document.createElement('div');
+		target.classList.add('AppMessage')
+		target.innerHTML = inputData.msg;
+		window.AppBoard.appendChild(target);
+	},
+
 	// CONTROL
 
 	ControlCreate (inputData) {
+		if (!inputData.trim().length) {
+			return;
+		}
+
 		mod._ControlSend({
 			guid: Date.now().toString(36),
 			author: window.webxdc.selfName,
@@ -35,6 +48,7 @@ const mod = {
 	// MESSAGE
 
 	MessageDidArrive (inputData) {
+		mod.ValueMessagesAdd(inputData);
 	},
 
 	// SETUP
@@ -66,4 +80,4 @@ if (typeof module !== 'undefined') {
 	module.exports = mod;
 }
 
-const AppBehaviour = mod;
+AppBehaviour = mod;
