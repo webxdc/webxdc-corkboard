@@ -8,6 +8,13 @@ const mod = {
 			OLSKRouteFunction (req, res, next) {
 				return res.render(require('path').join(__dirname, 'index.html'));
 			},
+		}, {
+			OLSKRoutePath: '/#name=PeerDevice&addr=PeerDevice@local.host',
+			OLSKRouteMethod: 'get',
+			OLSKRouteSignature: 'AppPeerRoute',
+			OLSKRouteFunction (req, res, next) {
+				return res.render(require('path').join(__dirname, 'index.html'));
+			},
 		}];
 	},
 

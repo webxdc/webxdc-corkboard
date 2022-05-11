@@ -1,4 +1,4 @@
-const kDefaultRoute = require('./ui-behaviour.js').OLSKControllerRoutes().pop();
+const kDefaultRoute = require('./ui-behaviour.js').OLSKControllerRoutes().shift();
 
 describe('APRVitrine_Misc', function () {
 	
@@ -62,6 +62,18 @@ describe('APRVitrine_Misc', function () {
 		
 		it('sets value', function () {
 			browser.assert.text(AppIdentity, 'this is MainDevice');
+		});
+
+		context('peer', function () {
+			
+			before(function() {
+				return browser.OLSKVisit(require('./ui-behaviour.js').OLSKControllerRoutes().pop());
+			});
+
+			it('sets value', function () {
+				browser.assert.text(AppIdentity, 'this is PeerDevice');
+			});
+		
 		});
 		
 	});

@@ -1,4 +1,4 @@
-const kDefaultRoute = require('./ui-behaviour.js').OLSKControllerRoutes().pop();
+const kDefaultRoute = require('./ui-behaviour.js').OLSKControllerRoutes().shift();
 
 Object.entries({
 	AppHeading: '.AppHeading',
