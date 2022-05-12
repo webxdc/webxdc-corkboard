@@ -1,3 +1,7 @@
+:root {
+	--AppPadding: 5px;
+}
+
 body {
 	background: #db893f;
 
@@ -9,11 +13,11 @@ body {
 }
 
 #AppCreateField, .AppCreateButton {
-	padding: 5px;
+	padding: var(--AppPadding);
 	border: 1px solid #674121;
-	border-radius: 5px;
+	border-radius: var(--AppPadding);
 
-	margin:  0;
+	margin: 0;
 
 	background: #f89849;
 	font-size: 12px;
@@ -26,11 +30,11 @@ body {
 
 #AppCreateField {
 	border-right: none;
-	border-radius: 5px 0 0 5px;
+	border-radius: var(--AppPadding) 0 0 var(--AppPadding);
 }
 
 .AppCreateButton {
-	border-radius: 0 5px 5px 0;
+	border-radius: 0 var(--AppPadding) var(--AppPadding) 0;
 }
 
 #AppItems {
@@ -42,8 +46,8 @@ body {
 
 .AppBoard {
 	max-width: 100px;
-	padding: 5px;
-	margin-right: 5px;
+	padding: var(--AppPadding);
+	margin-right: var(--AppPadding);
 
 	border: 1px solid black;
 	
@@ -54,7 +58,7 @@ body {
 .AppBoardName {
 	font-weight: bold;
 	padding: 3px;
-	margin-bottom: 5px;
+	margin-bottom: var(--AppPadding);
 }
 
 .AppMessage {
