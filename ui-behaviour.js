@@ -48,10 +48,6 @@ const mod = {
 
 	// INTERFACE
 
-	InterfaceCreateButtonDidClick () {
-		mod.ControlCreate(window.prompt());
-	},
-
 	InterfaceAdd (inputData) {
 		const element = document.createElement(inputData.address === window.webxdc.selfAddr ? 'button' : 'div');
 		element.classList.add('AppMessage');
@@ -111,6 +107,8 @@ const mod = {
 		}
 
 		mod._ControlJournal(mod.DataPayload(inputData));
+
+		window.AppCreateField.value = '';
 	},
 
 	ControlUpdate (msg, options) {

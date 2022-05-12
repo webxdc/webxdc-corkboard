@@ -2,6 +2,7 @@ const kDefaultRoute = require('./ui-behaviour.js').OLSKControllerRoutes().shift(
 
 Object.entries({
 	AppHeading: '.AppHeading',
+	AppCreateField: '#AppCreateField',
 	AppCreateButton: '.AppCreateButton',
 	AppItems: '#AppItems',
 	AppBoard: '.AppBoard',
@@ -20,6 +21,10 @@ describe('APRVitrine_Access', function () {
 
 	it('shows AppHeading', function () {
 		browser.assert.elements(AppHeading, 1);
+	});
+
+	it('shows AppCreateField', function() {
+		browser.assert.elements(AppCreateField, 1);
 	});
 
 	it('shows AppCreateButton', function () {
@@ -69,13 +74,11 @@ describe('APRVitrine_Access', function () {
 	context('submit filled', function () {
 
 		before(function () {
-			return browser.OLSKPrompt(function () {
-				return browser.click(AppCreateButton);
-			}, function (dialog) {
-				return Object.assign(dialog, {
-					response: Math.random().toString(),
-				});
-			});
+			return browser.fill(AppCreateField, Math.random().toString());
+		});
+		
+		before(function () {
+			return browser.click(AppCreateButton);
 		});
 
 		it('shows AppBoard', function () {
@@ -85,7 +88,7 @@ describe('APRVitrine_Access', function () {
 		it('shows AppBoardName', function () {
 			browser.assert.elements(AppBoardName, 1);
 		});
-
+		
 		it('shows AppMessage', function () {
 			browser.assert.elements(AppMessage, 1);
 		});
