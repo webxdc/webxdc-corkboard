@@ -4,13 +4,33 @@ body {
 	font-family: Helvetica, Arial, sans-serif;
 }
 
-.AppCreateButton {
+.AppCreate {
+	display: flex;
+}
+
+#AppCreateField, .AppCreateButton {
 	padding: 5px;
-	background: #f89849;
 	border: 1px solid #674121;
 	border-radius: 5px;
+
+	margin:  0;
+
+	background: #f89849;
 	font-size: 12px;
 	font-weight: bold;
+}
+
+#AppCreateField {
+	background: white;
+}
+
+#AppCreateField {
+	border-right: none;
+	border-radius: 5px 0 0 5px;
+}
+
+.AppCreateButton {
+	border-radius: 0 5px 5px 0;
 }
 
 #AppItems {
