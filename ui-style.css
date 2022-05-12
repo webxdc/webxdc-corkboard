@@ -12,29 +12,28 @@ body {
 	display: flex;
 }
 
-#AppCreateField, .AppCreateButton {
+.AppMessageField, .AppMessageButton {
 	padding: var(--AppPadding);
 	border: 1px solid #674121;
 	border-radius: var(--AppPadding);
 
 	margin: 0;
+}
 
-	background: #f89849;
+#AppCreateField, .AppCreateButton {
 	font-size: 12px;
 	font-weight: bold;
 }
 
-#AppCreateField {
-	background: white;
-}
-
-#AppCreateField {
+.AppMessageField {
 	border-right: none;
 	border-radius: var(--AppPadding) 0 0 var(--AppPadding);
 }
 
-.AppCreateButton {
+.AppMessageButton {
 	border-radius: 0 var(--AppPadding) var(--AppPadding) 0;
+	
+	background: #f89849;
 }
 
 #AppItems {

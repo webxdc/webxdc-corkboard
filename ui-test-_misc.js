@@ -43,6 +43,10 @@ describe('APRVitrine_Misc', function () {
 		it('sets autofocus', function () {
 			browser.assert.attribute(AppCreateField, 'autofocus', '');
 		});
+
+		it('classes AppMessageField', function () {
+			browser.assert.hasClass(AppCreateField, 'AppMessageField');
+		});
 		
 	});
 
@@ -54,6 +58,10 @@ describe('APRVitrine_Misc', function () {
 		
 		it('sets value', function () {
 			browser.assert.attribute(AppCreateButton, 'value', 'Create');
+		});
+
+		it('classes AppMessageButton', function () {
+			browser.assert.hasClass(AppCreateButton, 'AppMessageButton');
 		});
 		
 	});
