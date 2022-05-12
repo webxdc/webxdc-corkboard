@@ -30,6 +30,14 @@ describe('APRVitrine_Misc', function () {
 		
 	});
 
+	describe('AppCreate', function test_AppCreate () {
+		
+		it('classes AppMessageForm', function () {
+			browser.assert.hasClass(AppCreate, 'AppMessageForm');
+		});
+		
+	});
+
 	describe('AppCreateField', function test_AppCreateField () {
 		
 		it('sets type', function () {
@@ -84,24 +92,84 @@ describe('APRVitrine_Misc', function () {
 
 		context('click', function () {
 
-			const response = Math.random().toString();
+			const item = Math.random().toString();
+
+			before(function () {
+				return browser.click(AppMessage);
+			});
 			
 			before(function () {
-				return browser.OLSKPrompt(function () {
-					return browser.click(AppMessage);
-				}, function (dialog) {
-					return Object.assign(dialog, {
-						response,
-					});
-				});
+				return browser.fill(AppMessageUpdateField, item);
+			});
+			
+			before(function () {
+				return browser.click(AppMessageUpdateButton);
 			});
 
 			it('sets text', function () {
-				browser.assert.text(AppMessage, response);
+				browser.assert.text(AppMessage, item);
 			});
 		
 		});
 		
+	});
+
+	context('edit', function () {
+		
+		let item;
+
+		before(function () {
+			item = browser.query(AppMessage).textContent;
+		});
+		
+		before(function () {
+			return browser.click(AppMessage);
+		});
+		
+		describe('AppBoard', function test_AppBoard () {
+
+			it('classes AppBoardEditing', function () {
+				browser.assert.hasClass(AppBoard, 'AppBoardEditing');
+			});
+			
+		});
+
+		describe('AppMessageUpdateField', function test_AppMessageUpdateField () {
+			
+			it('sets type', function () {
+				browser.assert.attribute(AppMessageUpdateField, 'type', 'text');
+			});
+			
+			it('sets value', function () {
+				browser.assert.attribute(AppMessageUpdateField, 'value', item);
+			});
+			
+			it('sets autofocus', function () {
+				browser.assert.attribute(AppMessageUpdateField, 'autofocus', '');
+			});
+
+			it('classes AppMessageField', function () {
+				browser.assert.hasClass(AppMessageUpdateField, 'AppMessageField');
+			});
+			
+		});
+
+		describe('AppMessageUpdateButton', function test_AppMessageUpdateButton () {
+			
+			it('sets type', function () {
+				browser.assert.attribute(AppMessageUpdateButton, 'type', 'submit');
+			});
+			
+			it('sets value', function () {
+				browser.assert.attribute(AppMessageUpdateButton, 'value', 'Update');
+			});
+
+			it('classes AppMessageButton', function () {
+				browser.assert.hasClass(AppMessageUpdateButton, 'AppMessageButton');
+			});
+			
+		});
+	
 	});
 
 	describe('AppIdentity', function test_AppIdentity () {

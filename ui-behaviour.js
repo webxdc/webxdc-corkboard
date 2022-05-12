@@ -76,13 +76,33 @@ const mod = {
 
 		if (payload.address === window.webxdc.selfAddr) {
 			element.onclick = function () {
-				const response = window.prompt('Edit to rename, clear to delete', payload.msg);
+				element.style.display = 'none';
 
-				if (!response.trim().length) {
-					return mod.ControlDelete(payload);
-				}
+				window[payload.address].classList.add('AppBoardEditing')
 
-				mod.ControlUpdate(response, payload);
+				const form = document.createElement('form');
+				form.classList.add('AppUpdate');
+				form.classList.add('AppMessageForm');
+				form.id = element.id + '-form'
+				form.innerHTML = `
+				<input class="AppMessageUpdateField AppMessageField" type="text" value="${ payload.msg }" autofocus />
+				<input class="AppMessageUpdateButton AppMessageButton" type="submit" value="Update" />`;
+				form.onsubmit = function () {
+					event.preventDefault();
+
+					const response = document.querySelector(`#${ element.id }-form .AppMessageUpdateField`).value;
+					form.remove();
+
+					if (!response.trim().length) {
+						return mod.ControlDelete(payload);
+					}
+
+					element.style.display = '';
+
+					mod.ControlUpdate(response, payload);
+				};
+
+				window[payload.address].insertBefore(form, element.nextElementSibling);
 			};
 		}
 

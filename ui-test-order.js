@@ -16,15 +16,17 @@ describe('APRVitrine_Order', function () {
 	context('create', function () {
 		
 		items.forEach(function (response) {
+
+			before(function () {
+				return browser.click(AppCreateButton);
+			});
+
+			before(function () {
+				return browser.fill(AppCreateField, response);
+			});
 			
 			before(function () {
-				return browser.OLSKPrompt(function () {
-					return browser.click(AppCreateButton);
-				}, function (dialog) {
-					return Object.assign(dialog, {
-						response,
-					});
-				});
+				return browser.click(AppCreateButton);
 			});
 
 		});
@@ -36,17 +38,19 @@ describe('APRVitrine_Order', function () {
 	});
 
 	context('update', function () {
+
+		before(function () {
+			return browser.click(`${ AppMessage }:nth-of-type(2)`);
+		});
 		
 		before(function () {
-			return browser.OLSKPrompt(function () {
-				return browser.click(`${ AppMessage }:nth-of-type(2)`);
-			}, function (dialog) {
-				return Object.assign(dialog, {
-					response: itemUpdate,
-				});
-			});
+			return browser.fill(AppMessageUpdateField, itemUpdate);
 		});
-
+		
+		before(function () {
+			return browser.click(AppMessageUpdateButton);
+		});
+		
 		it('places recent at the top', function () {
 			browser.assert.text(AppMessage, [itemUpdate, items[0], items[2]].join(''));
 		});
@@ -62,13 +66,15 @@ describe('APRVitrine_Order', function () {
 		});
 
 		before(function () {
-			return browser.OLSKPrompt(function () {
-				return browser.click(AppCreateButton);
-			}, function (dialog) {
-				return Object.assign(dialog, {
-					response: item,
-				});
-			});
+			return browser.click(AppCreateButton);
+		});
+
+		before(function () {
+			return browser.fill(AppCreateField, item);
+		});
+		
+		before(function () {
+			return browser.click(AppCreateButton);
 		});
 
 		it('places recent at the top', function () {

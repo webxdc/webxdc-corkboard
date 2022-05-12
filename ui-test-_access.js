@@ -2,12 +2,15 @@ const kDefaultRoute = require('./ui-behaviour.js').OLSKControllerRoutes().shift(
 
 Object.entries({
 	AppHeading: '.AppHeading',
+	AppCreate: '.AppCreate',
 	AppCreateField: '#AppCreateField',
 	AppCreateButton: '.AppCreateButton',
 	AppItems: '#AppItems',
 	AppBoard: '.AppBoard',
 	AppBoardName: '.AppBoardName',
 	AppMessage: '.AppMessage',
+	AppMessageUpdateField: '.AppMessageUpdateField',
+	AppMessageUpdateButton: '.AppMessageUpdateButton',
 	AppIdentity: '#AppIdentity',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
@@ -47,6 +50,14 @@ describe('APRVitrine_Access', function () {
 		browser.assert.elements(AppMessage, 0);
 	});
 
+	it('hides AppMessageUpdateField', function() {
+		browser.assert.elements(AppMessageUpdateField, 0);
+	});
+
+	it('hides AppMessageUpdateButton', function () {
+		browser.assert.elements(AppMessageUpdateButton, 0);
+	});
+
 	it('shows AppIdentity', function () {
 		browser.assert.elements(AppIdentity, 1);
 	});
@@ -68,6 +79,14 @@ describe('APRVitrine_Access', function () {
 		it('hides AppMessage', function () {
 			browser.assert.elements(AppMessage, 0);
 		});
+
+		it('hides AppMessageUpdateField', function() {
+			browser.assert.elements(AppMessageUpdateField, 0);
+		});
+
+		it('hides AppMessageUpdateButton', function () {
+			browser.assert.elements(AppMessageUpdateButton, 0);
+		});
 	
 	});
 
@@ -88,9 +107,37 @@ describe('APRVitrine_Access', function () {
 		it('shows AppBoardName', function () {
 			browser.assert.elements(AppBoardName, 1);
 		});
+
+		it('shows AppMessage', function () {
+			browser.assert.elements(AppMessage, 1);
+		});
+
+		it('hides AppMessageUpdateField', function() {
+			browser.assert.elements(AppMessageUpdateField, 0);
+		});
+
+		it('hides AppMessageUpdateButton', function () {
+			browser.assert.elements(AppMessageUpdateButton, 0);
+		});
+	
+	});
+
+	context('edit', function () {
+
+		before(function () {
+			return browser.click(AppMessage);
+		});
 		
 		it('shows AppMessage', function () {
 			browser.assert.elements(AppMessage, 1);
+		});
+
+		it('shows AppMessageUpdateField', function() {
+			browser.assert.elements(AppMessageUpdateField, 1);
+		});
+
+		it('shows AppMessageUpdateButton', function () {
+			browser.assert.elements(AppMessageUpdateButton, 1);
 		});
 	
 	});
@@ -98,13 +145,11 @@ describe('APRVitrine_Access', function () {
 	context('edit empty', function () {
 
 		before(function () {
-			return browser.OLSKPrompt(function () {
-				return browser.click(AppMessage);
-			}, function (dialog) {
-				return Object.assign(dialog, {
-					response: '',
-				});
-			});
+			return browser.fill(AppMessageUpdateField, '');
+		});
+		
+		before(function () {
+			return browser.click(AppMessageUpdateButton);
 		});
 
 		it('hides AppBoardName', function () {
@@ -117,6 +162,14 @@ describe('APRVitrine_Access', function () {
 
 		it('hides AppMessage', function () {
 			browser.assert.elements(AppMessage, 0);
+		});
+
+		it('hides AppMessageUpdateField', function() {
+			browser.assert.elements(AppMessageUpdateField, 0);
+		});
+
+		it('hides AppMessageUpdateButton', function () {
+			browser.assert.elements(AppMessageUpdateButton, 0);
 		});
 	
 	});

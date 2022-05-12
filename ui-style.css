@@ -8,7 +8,7 @@ body {
 	font-family: Helvetica, Arial, sans-serif;
 }
 
-.AppCreate {
+.AppMessageForm {
 	display: flex;
 }
 
@@ -55,6 +55,10 @@ body {
 	
 	display: flex;
 	flex-direction: column;
+}
+
+.AppBoardEditing {
+	max-width: 300px;
 }
 
 .AppBoardName {

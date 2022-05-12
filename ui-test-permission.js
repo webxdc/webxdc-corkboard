@@ -9,13 +9,15 @@ describe('APRVitrine_Permission', function () {
 	context('self', function () {
 		
 		before(function () {
-			return browser.OLSKPrompt(function () {
-				return browser.click(AppCreateButton);
-			}, function (dialog) {
-				return Object.assign(dialog, {
-					response: Math.random().toString(),
-				});
-			});
+			return browser.click(AppCreateButton);
+		});
+
+		before(function () {
+			return browser.fill(AppCreateField, Math.random().toString());
+		});
+		
+		before(function () {
+			return browser.click(AppCreateButton);
 		});
 
 		it('creates button', function () {
