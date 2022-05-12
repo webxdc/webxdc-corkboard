@@ -16,7 +16,7 @@ Object.entries({
 	return global[e.shift()] = e.pop();
 });
 
-describe('APRVitrine_Access', function () {
+describe('AppMain_Access', function () {
 	
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute);

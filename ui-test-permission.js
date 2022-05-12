@@ -1,6 +1,6 @@
 const kDefaultRoute = require('./ui-behaviour.js').OLSKControllerRoutes().shift();
 
-describe('APRVitrine_Permission', function () {
+describe('AppMain_Permission', function () {
 	
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute);

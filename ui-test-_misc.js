@@ -1,6 +1,6 @@
 const kDefaultRoute = require('./ui-behaviour.js').OLSKControllerRoutes().shift();
 
-describe('APRVitrine_Misc', function () {
+describe('AppMain_Misc', function () {
 	
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute);
