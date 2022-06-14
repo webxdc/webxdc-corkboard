@@ -85,7 +85,7 @@ const mod = {
 				form.classList.add('AppMessageForm');
 				form.id = element.id + '-form'
 				form.innerHTML = `
-				<input class="AppMessageUpdateField AppMessageField" type="text" value="${ payload.msg }" autofocus />
+				<input class="AppMessageUpdateField AppMessageField" type="text" value="${ payload.msg }" autofocus required />
 				<input class="AppMessageUpdateButton AppMessageButton" type="submit" value="Update" />`;
 				form.onsubmit = function () {
 					event.preventDefault();

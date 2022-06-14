@@ -51,6 +51,10 @@ describe('AppMain_Misc', function () {
 		it('sets autofocus', function () {
 			browser.assert.attribute(AppCreateField, 'autofocus', '');
 		});
+		
+		it('sets required', function () {
+			browser.assert.attribute(AppCreateField, 'required', '');
+		});
 
 		it('classes AppMessageField', function () {
 			browser.assert.hasClass(AppCreateField, 'AppMessageField');
@@ -146,6 +150,10 @@ describe('AppMain_Misc', function () {
 			
 			it('sets autofocus', function () {
 				browser.assert.attribute(AppMessageUpdateField, 'autofocus', '');
+			});
+
+			it('sets required', function () {
+				browser.assert.attribute(AppMessageUpdateField, 'required', '');
 			});
 
 			it('classes AppMessageField', function () {
