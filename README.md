@@ -1,4 +1,6 @@
-# Corkboard
+# moved to https://codeberg.org/webxdc/corkboard
+
+## Corkboard
 
 Sample app demonstrating CRUD (create, read, update, delete) operations.
 
